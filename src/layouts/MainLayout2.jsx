@@ -44,13 +44,13 @@ const MainLayout2 = ({ onCompose }) => {
             >
                 {/* Close button for mobile */}
                 <button
-                    className="md:hidden absolute top-4 right-4 text-gray-400 hover:text-red-500 text-2xl font-bold"
+                    className="md:hidden absolute top-4 right-4 text-gray-400 hover:text-red-500 text-4xl font-bold"
                     onClick={() => setSidebarOpen(false)}
                     aria-label="Close sidebar"
                 >×</button>
                 {/* Compose Button */}
                 <button
-                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full px-6 py-3 mb-4 shadow flex items-center justify-center text-base"
+                    className="bg-blue-600 md:w-full w-50 hover:bg-blue-700 text-white font-semibold rounded-full px-6 py-3 mb-4 shadow flex items-center justify-center text-base"
                     onClick={() => { setSidebarOpen(false); onCompose && onCompose(); }}
                 >
                     <span className="mr-2 text-lg">✚</span> Compose
@@ -81,9 +81,11 @@ const MainLayout2 = ({ onCompose }) => {
                     ))}
                 </div>
                 {/* Upgrade/Storage/Other bottom section */}
-                <div className="mt-auto px-4 py-3 text-xs text-gray-400">
-                    <div className="mb-1">Upgrade</div>
-                    <div>Storage: 2.1 GB of 15 GB used</div>
+                <div className="h-95 width-64  flex justify-start items-end">
+                    <div className=" mt-auto px-4 py-3  text-xs text-gray-400">
+                        <div className="mb-1">Upgrade</div>
+                        <div>Storage: 2.1 GB of 15 GB used</div>
+                    </div>
                 </div>
             </aside>
         </>

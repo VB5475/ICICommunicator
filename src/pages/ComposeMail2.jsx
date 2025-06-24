@@ -27,7 +27,7 @@ const ComposeMail2 = ({ open, onClose }) => {
     if (!open) return null;
 
     return (
-        <div className="fixed top-0 right-0 h-full w-[420px] bg-white shadow-2xl border-l border-gray-200 z-50 flex flex-col">
+        <div className="fixed top-0 right-0 h-full w-[420px] bg-white shadow-2xl border-l border-gray-200 z-50 flex flex-col pl-5 md:pl-4 md:pr-4">
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100 bg-gray-50">
                 <span className="font-medium text-gray-800 text-base">New Message</span>
@@ -108,6 +108,7 @@ const ComposeMail2 = ({ open, onClose }) => {
                     <Button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-1 text-sm rounded-full">Send</Button>
                     <button className="text-xs text-gray-600 hover:underline">Discard</button>
                 </div>
+                
                 <div className="flex items-center space-x-2">
                     <button className="text-xs text-gray-600 hover:underline">Confidential mode</button>
                     <button className="text-xs text-gray-600 hover:underline">More options</button>
