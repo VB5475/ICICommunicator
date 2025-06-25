@@ -2,16 +2,15 @@ import React, { useState } from "react";
 import MainLayout2 from "./layouts/MainLayout2";
 import ComposeMail2 from "./pages/ComposeMail2";
 import EmailListPreview from "./components/EmailListPreview";
-import MainLayout from "./layout/MainLayout";
-import ComposeMail from "./pages/ComposeMail";
 
 function App() {
   const [showCompose, setShowCompose] = useState(false);
 
   return (
-    <div className="flex flex-col md:flex-row h-screen w-screen bg-gray-50">
+    <div className="flex h-screen w-screen bg-gray-50">
       <MainLayout2 onCompose={() => setShowCompose(true)} />
-      <div className="flex-1 flex">
+      {/* Main content area - takes remaining space */}
+      <div className="flex-1 flex min-w-0">
         <EmailListPreview />
       </div>
       {showCompose && (

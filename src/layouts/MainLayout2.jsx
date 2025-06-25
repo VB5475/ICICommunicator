@@ -2,24 +2,36 @@ import React, { useState } from "react";
 
 const navItems = [
     { label: "Inbox", icon: "📥", active: true },
-    { label: "Starred", icon: "⭐" },
-    { label: "Snoozed", icon: "⏰" },
+    { label: "Failed", icon: "❌" },
+    { label: "Outbox", icon: "➡️" },
+    { label: "Junk", icon: "🗑️" },
     { label: "Sent", icon: "📤" },
     { label: "Drafts", icon: "📝" },
-    { label: "More", icon: "⋯" },
+    // { label: "More", icon: "⋯" },
 ];
 
-const labels = [
-    { label: "Personal", color: "bg-blue-500" },
-    { label: "Work", color: "bg-green-500" },
-    { label: "Travel", color: "bg-yellow-500" },
+const worklistItems = [
+    { label: "New Task", icon: "➕" },
+    { label: "Pending", icon: "⏳" },
+    { label: "In Process", icon: "⚙️" },
 ];
 
-const MainLayout2 = ({ onCompose }) => {
+const followupItems = [
+    { label: "New Followup", icon: "➕" },
+    { label: "Pending", icon: "⏳" },
+];
+
+// const labels = [
+//     { label: "Personal", color: "bg-blue-500" },
+//     { label: "Work", color: "bg-green-500" },
+//     { label: "Travel", color: "bg-yellow-500" },
+// ];
+
+const MainLayout2 = ({ onCompose, children }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
-        <>
+        <div className="flex min-h-screen overflow-hidden">
             {/* Hamburger for mobile */}
             <button
                 className="md:hidden fixed top-4 left-4 z-50 bg-blue-600 text-white rounded-full p-2 shadow-lg"
@@ -34,11 +46,12 @@ const MainLayout2 = ({ onCompose }) => {
             )}
             <aside
                 className={`
-                    bg-white border-r border-gray-200 flex flex-col py-4 px-2 min-h-screen
+                    bg-white border-r border-gray-200 flex flex-col py-4 px-2
                     w-64 md:relative md:translate-x-0 md:z-10
-                    fixed top-0 left-0 z-50 h-full transition-transform duration-300
+                    fixed top-0 left-0 z-50 h-screen transition-transform duration-300
                     ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
                     md:translate-x-0 md:block
+                    overflow-y-auto
                 `}
                 style={{ maxWidth: '100vw' }}
             >
@@ -50,7 +63,7 @@ const MainLayout2 = ({ onCompose }) => {
                 >×</button>
                 {/* Compose Button */}
                 <button
-                    className="bg-blue-600 md:w-full w-50 hover:bg-blue-700 text-white font-semibold rounded-full px-6 py-3 mb-4 shadow flex items-center justify-center text-base"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full px-6 py-2 mb-2 shadow flex items-center justify-center mx-auto text-base"
                     onClick={() => { setSidebarOpen(false); onCompose && onCompose(); }}
                 >
                     <span className="mr-2 text-lg">✚</span> Compose
@@ -70,14 +83,30 @@ const MainLayout2 = ({ onCompose }) => {
                         </button>
                     ))}
                 </nav>
-                {/* Labels */}
-                <div className="mt-6">
-                    <div className="text-xs text-gray-500 font-semibold mb-2 px-4">Labels</div>
-                    {labels.map((label) => (
-                        <div key={label.label} className="flex items-center px-4 py-1 text-sm">
-                            <span className={`w-2 h-2 rounded-full mr-2 ${label.color}`}></span>
-                            {label.label}
-                        </div>
+                {/* Worklist */}
+                <div className="mt-2">
+                    <div className="text-xs text-gray-500 font-semibold mb-2 px-4">Worklist</div>
+                    {worklistItems.map((item) => (
+                        <button
+                            key={item.label}
+                            className={`w-full flex items-center px-4 py-2 rounded-lg mb-1 text-left text-sm font-medium transition-colors text-gray-700 hover:bg-gray-100`}
+                        >
+                            <span className="mr-3 text-lg">{item.icon}</span>
+                            {item.label}
+                        </button>
+                    ))}
+                </div>
+                {/* Followup */}
+                <div className="mt-2">
+                    <div className="text-xs text-gray-500 font-semibold mb-2 px-4">Followup</div>
+                    {followupItems.map((item) => (
+                        <button
+                            key={item.label}
+                            className={`w-full flex items-center px-4 py-2 rounded-lg mb-1 text-left text-sm font-medium transition-colors text-gray-700 hover:bg-gray-100`}
+                        >
+                            <span className="mr-3 text-lg">{item.icon}</span>
+                            {item.label}
+                        </button>
                     ))}
                 </div>
                 {/* Upgrade/Storage/Other bottom section */}
@@ -88,7 +117,11 @@ const MainLayout2 = ({ onCompose }) => {
                     </div>
                 </div>
             </aside>
-        </>
+            {/* Main content area */}
+            <main className="flex-1 h-screen overflow-y-auto bg-gray-50">
+                {children}
+            </main>
+        </div>
     );
 };
 
