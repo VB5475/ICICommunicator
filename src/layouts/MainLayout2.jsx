@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CircleUserRound } from "lucide-react";
 
 const navItems = [
     { label: "Inbox", icon: "📥", active: true },
@@ -34,7 +35,7 @@ const MainLayout2 = ({ onCompose, children }) => {
         <div className="flex min-h-screen overflow-hidden">
             {/* Hamburger for mobile */}
             <button
-                className="md:hidden fixed top-4 left-4 z-50 bg-blue-600 text-white rounded-full p-2 shadow-lg"
+                className="md:block lg:hidden fixed top-4 left-4 md:top-0 md:left-0 z-50 bg-blue-600 text-white rounded-full p-2 shadow-lg"
                 onClick={() => setSidebarOpen(true)}
                 aria-label="Open sidebar"
             >
@@ -42,7 +43,7 @@ const MainLayout2 = ({ onCompose, children }) => {
             </button>
             {/* Sidebar overlay for mobile */}
             {sidebarOpen && (
-                <div className="fixed inset-0 z-40 bg-black/40 md:hidden" onClick={() => setSidebarOpen(false)} />
+                <div className="fixed inset-0 z-40 bg-black/40 lg:block" onClick={() => setSidebarOpen(false)} />
             )}
             <aside
                 className={`
@@ -50,7 +51,7 @@ const MainLayout2 = ({ onCompose, children }) => {
                     w-64 md:relative md:translate-x-0 md:z-10
                     fixed top-0 left-0 z-50 h-screen transition-transform duration-300
                     ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-                    md:translate-x-0 md:block
+                    md:translate-x-0 md:hidden lg:block
                     overflow-y-auto
                 `}
                 style={{ maxWidth: '100vw' }}
@@ -110,11 +111,16 @@ const MainLayout2 = ({ onCompose, children }) => {
                     ))}
                 </div>
                 {/* Upgrade/Storage/Other bottom section */}
-                <div className="h-95 width-64  flex justify-start items-end">
-                    <div className=" mt-auto px-4 py-3  text-xs text-gray-400">
-                        <div className="mb-1">Upgrade</div>
-                        <div>Storage: 2.1 GB of 15 GB used</div>
-                    </div>
+                <div className="h-50 width-64 flex justify-start items-end gap-0">
+                   <div className="flex justify-center items-center border-2 border-black rounded-3xl ">
+                        <div className="px-4 py-3 flex items-center lg:mb-2">
+                            <CircleUserRound size={40} strokeWidth={1.5} className=""/>
+                        </div>
+                        <div className=" px-4 py-3 text-xs text-gray-400 ml-[-20px]">
+                            <div className="font-bold lg:text-xl md:text-lg text-sm">User_name </div>
+                            <div className="lg:text-xl md:text-lg text-sm">User's Role </div>
+                        </div>
+                   </div>
                 </div>
             </aside>
             {/* Main content area */}
