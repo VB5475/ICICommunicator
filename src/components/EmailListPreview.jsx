@@ -45,28 +45,28 @@ const emails = [
 
 const EmailListPreview = () => {
     return (
-        <div className="bg-white rounded-lg shadow border border-gray-200 max-h-full h-full overflow-y-auto w-full max-w-[420px] md:max-w-full sm:max-w-full min-w-0 flex flex-col mx-auto md:mx-0 p-0 sm:p-0">
+        <div className="w-full h-full flex flex-col px-0">
             {/* Header */}
-            <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between sm:px-2 sm:py-2">
-                <span className="font-semibold text-gray-800 text-base sm:text-sm">Primary</span>
+            <div className="pb-3 border-b border-gray-100 flex items-center justify-between">
+                <span className="font-semibold text-gray-800 text-base">Primary</span>
                 <span className="text-xs text-gray-500">{emails.length} emails</span>
             </div>
             {/* Email List */}
-            <ul className="flex-1 divide-y divide-gray-100">
+            <ul className="flex-1 divide-y divide-gray-100 mt-2 overflow-y-auto">
                 {emails.map((mail) => (
                     <li
                         key={mail.id}
-                        className={`px-4 py-3 flex items-start space-x-3 cursor-pointer hover:bg-blue-50 transition-colors ${mail.unread ? "bg-blue-50/50" : ""} sm:px-2 sm:py-2`}
+                        className={`py-3 flex items-start space-x-3 cursor-pointer hover:bg-blue-50 transition-colors ${mail.unread ? "bg-blue-50/50" : ""}`}
                     >
-                        <div className="flex-shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white font-bold text-lg sm:w-7 sm:h-7 sm:text-base">
+                        <div className="flex-shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white font-bold text-lg">
                             {mail.sender[0]}
                         </div>
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between">
-                                <span className={`font-medium text-sm truncate ${mail.unread ? "text-blue-800" : "text-gray-800"} sm:text-xs`}>{mail.sender}</span>
+                                <span className={`font-medium text-sm truncate ${mail.unread ? "text-blue-800" : "text-gray-800"}`}>{mail.sender}</span>
                                 <span className="text-xs text-gray-400 ml-2 whitespace-nowrap">{mail.time}</span>
                             </div>
-                            <div className={`truncate text-sm ${mail.unread ? "font-semibold" : "text-gray-600"} sm:text-xs`}>{mail.subject}</div>
+                            <div className={`truncate text-sm ${mail.unread ? "font-semibold" : "text-gray-600"}`}>{mail.subject}</div>
                             <div className="truncate text-xs text-gray-500">{mail.snippet}</div>
                         </div>
                     </li>
