@@ -7,6 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import Logo from '../assets/images/logo.PNG'
 import TypedText from '@/components/TypedText'
 import '../App.css' 
+import { User } from 'lucide-react'
 
 const Loginpage = () => {
     const [showPassword, setShowPassword] = useState(false)
@@ -63,7 +64,7 @@ const Loginpage = () => {
                             <CardContent className='flex flex-col justify-center items-center gap-6'>
                                 <div className="w-full">
                                     <Label htmlFor="userId" className="flex justify-start items-center gap-2 mb-2">
-                                        <span> </span> User ID
+                                        <User size={20} className='text-blue-500'/> User ID
                                     </Label>
                                     <Input id="userId" placeholder="Enter your ID" value={data.id} onChange={(e) => setData({ ...data,id: e.target.value })}/>
                                 </div>
