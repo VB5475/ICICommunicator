@@ -100,11 +100,11 @@ const MainLayout2 = ({ onCompose, children, user = { name: "User_name", role: "U
                         <div className="flex items-center space-x-3">
                             <span className={`bg-gray-800 text-white text-sm px-3 py-2 rounded-lg shadow-lg transition-all duration-200 ${fabOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'
                                 }`}>
-                                Compose
+                                    Compose
                             </span>
                             <button
                                 className="bg-green-600 hover:bg-green-700 text-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-105"
-                                onClick={() => { onCompose && onCompose(); setFabOpen(false); }}
+                                onClick={() => { onCompose && onCompose();  }}
                                 aria-label="Compose"
                             >
                                 <Plus size={20} />

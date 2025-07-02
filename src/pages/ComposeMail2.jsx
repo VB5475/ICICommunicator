@@ -3,7 +3,8 @@ import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 
-const ComposeMail2 = ({ open, onClose }) => {
+// Destructure 'open' and 'onClose' from props
+const ComposeMail2 = ({ open, onClose }) => { // Changed prop to 'open' and added 'onClose'
     const [to, setTo] = useState("");
     const [cc, setCc] = useState("");
     const [bcc, setBcc] = useState("");
@@ -14,6 +15,7 @@ const ComposeMail2 = ({ open, onClose }) => {
     const [showToolbar, setShowToolbar] = useState(typeof window !== 'undefined' ? window.innerWidth >= 768 : true);
 
     useEffect(() => {
+        // Use 'open' prop for resetting state
         if (!open) {
             setTo("");
             setCc("");
@@ -23,7 +25,7 @@ const ComposeMail2 = ({ open, onClose }) => {
             setShowCc(false);
             setShowBcc(false);
         }
-    }, [open]);
+    }, [open]); // Dependency array updated to 'open'
 
     useEffect(() => {
         function handleResize() {
@@ -35,13 +37,15 @@ const ComposeMail2 = ({ open, onClose }) => {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
+    // Only render if 'open' is true
     if (!open) return null;
 
     return (
-        <div className="fixed top-0 right-0 h-full w-[420px] md:w-full lg:w-full bg-white shadow-2xl border-l border-gray-200 z-50 flex flex-col pl-5 md:px-0 lg:px-0 ">
+        <div className="h-screen w-full md:w-full lg:w-full bg-white shadow-2xl border-l border-gray-200 z-50 flex flex-col pl-5 md:px-0 lg:px-0 ">
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100 bg-gray-50">
                 <span className="font-medium text-gray-800 text-base">New Message</span>
+                {/* Use the onClose prop */}
                 <button className="text-gray-400 hover:text-red-500 text-2xl font-bold" onClick={onClose}>×</button>
             </div>
             {/* Fields */}
@@ -131,4 +135,4 @@ const ComposeMail2 = ({ open, onClose }) => {
     );
 };
 
-export default ComposeMail2; 
+export default ComposeMail2;
