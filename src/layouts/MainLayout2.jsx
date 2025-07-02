@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { CircleUserRound, ChevronUp, ChevronDown, Settings, Globe, HelpCircle, Crown, BookOpen, LogOut } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
+import { CircleUserRound, ChevronUp, ChevronDown, Settings, Globe, HelpCircle, Crown, BookOpen, LogOut, Menu, Plus, X, MousePointer } from "lucide-react";
 
 const navItems = [
     { label: "Home", icon: "🏠", key: "home" },
@@ -22,10 +22,25 @@ const followupItems = [
     { label: "Pending", icon: "⏳" },
 ];
 
-const MainLayout2 = ({ onCompose, children, user = { name: "User_name", role: "User's Role", avatar: "", email: "user@example.com", plan: "Free plan" } }) => {
+const MainLayout2 = ({ onCompose, children, user = { name: "User_name", role: "User's Role", avatar: "", email: "user@example.com", plan: "Free plan" }, setShowHome }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [selectedNav, setSelectedNav] = useState("home");
+    const [fabOpen, setFabOpen] = useState(false);
+    const fabRef = useRef(null);
+
+    useEffect(() => {
+        if (!fabOpen) return;
+        function handleClickOutside(event) {
+            if (fabRef.current && !fabRef.current.contains(event.target)) {
+                setFabOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [fabOpen]);
 
     const handleMenuItemClick = (action) => {
         console.log(`Clicked: ${action}`);
@@ -48,6 +63,7 @@ const MainLayout2 = ({ onCompose, children, user = { name: "User_name", role: "U
                 break;
             case 'logout':
                 // Handle logout
+                setShowHome && setShowHome(false)
                 break;
             default:
                 break;
@@ -56,48 +72,93 @@ const MainLayout2 = ({ onCompose, children, user = { name: "User_name", role: "U
 
     return (
         <div className="flex h-screen lg:h-[100vh] overflow-hidden">
-            {/* Hamburger for mobile */}
+            {/* Clean Professional Floating Action Button for mobile */}
             {!sidebarOpen && (
-                <button
-                    className="block lg:hidden fixed bottom-6 right-6 z-50 bg-blue-500 text-white rounded-full p-4 shadow-lg"
-                    onClick={() => setSidebarOpen(true)}
-                    aria-label="Open sidebar"
-                >
-                    <svg width="28" height="28" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="18" x2="21" y2="18" /></svg>
-                </button>
+                <div ref={fabRef} className="block lg:hidden fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-3">
+                    {/* Speed dial actions */}
+                    <div className={`flex flex-col items-end space-y-3 transition-all duration-300 ease-out ${fabOpen
+                        ? 'opacity-100 translate-y-0 pointer-events-auto'
+                        : 'opacity-0 translate-y-4 pointer-events-none'
+                        }`}>
+
+                        {/* Sidebar button */}
+                        <div className="flex items-center space-x-3">
+                            <span className={`bg-gray-800 text-white text-sm px-3 py-2 rounded-lg shadow-lg transition-all duration-200 ${fabOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'
+                                }`}>
+                                Open sidebar
+                            </span>
+                            <button
+                                className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-105"
+                                onClick={() => { setSidebarOpen(true); setFabOpen(false); }}
+                                aria-label="Open sidebar"
+                            >
+                                <Menu size={20} />
+                            </button>
+                        </div>
+
+                        {/* Compose button */}
+                        <div className="flex items-center space-x-3">
+                            <span className={`bg-gray-800 text-white text-sm px-3 py-2 rounded-lg shadow-lg transition-all duration-200 ${fabOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'
+                                }`}>
+                                Compose
+                            </span>
+                            <button
+                                className="bg-green-600 hover:bg-green-700 text-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-105"
+                                onClick={() => { onCompose && onCompose(); setFabOpen(false); }}
+                                aria-label="Compose"
+                            >
+                                <Plus size={20} />
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Main FAB */}
+                    <button
+                        className={`
+                            ${fabOpen
+                                ? 'bg-gray-600 hover:bg-gray-700 rotate-180'
+                                : 'bg-blue-600 hover:bg-blue-700 rotate-0'
+                            } 
+                            text-white rounded-full p-4 shadow-lg 
+                            transition-all duration-300 ease-out
+                            hover:scale-105 hover:shadow-xl
+                        `}
+                        onClick={() => setFabOpen(fab => !fab)}
+                        aria-label="Open actions"
+                    >
+                        <div className="transition-transform duration-300">
+                            {fabOpen ? (
+                                <X size={24} />
+
+                            ) : (
+                                <MousePointer size={24} />
+                            )}
+                        </div>
+                    </button>
+                </div>
             )}
 
             {/* Sidebar overlay for mobile */}
             {sidebarOpen && (
-                <div className="fixed inset-0 z-40 bg-black/40 xl:block" onClick={() => setSidebarOpen(false)} />
+                <div className="fixed inset-0 bg-black/20 bg-opacity-10 z-40 xl:block transition-all duration-300" onClick={() => setSidebarOpen(false)} />
             )}
 
             <aside
                 className={`
                     bg-white border-r border-gray-200 flex flex-col
                     w-64 lg:relative lg:translate-x-0 lg:z-10
-                    fixed top-0 left-0 z-50 h-screen transition-transform duration-300
-                    ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-                    lg:translate-x-0 lg:hidden xl:block
+                    fixed top-0 left-0 z-50 h-screen transition-all duration-300 ease-out
+                    ${sidebarOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full shadow-none'}
+                    lg:translate-x-0 lg:hidden xl:block lg:shadow-none pt-10
                 `}
                 style={{ maxWidth: '100vw', height: '100vh' }}
             >
                 {/* Close button for mobile */}
                 <button
-                    className="lg:hidden absolute top-4 right-4 text-gray-400 hover:text-red-500 text-4xl font-bold z-10"
+                    className=" absolute top-0 right-4 text-gray-400 hover:text-red-500 text-4xl font-bold z-10 transition-colors duration-200"
                     onClick={() => setSidebarOpen(false)}
                     aria-label="Close sidebar"
                 >×</button>
-
-                {/* Fixed Compose Button at Top */}
-                <div className="flex-shrink-0 p-4 pt-16 lg:pt-4">
-                    <button
-                        className="bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-full px-6 py-2 shadow flex items-center justify-center w-full text-base transition-colors"
-                        onClick={() => { setSidebarOpen(false); onCompose && onCompose(); }}
-                    >
-                        <span className="mr-2 text-lg">✚</span> Compose
-                    </button>
-                </div>
 
                 {/* Scrollable Middle Section - This will take up all available space */}
                 <div className="flex-1 overflow-y-auto px-4 pb-4 min-h-0">

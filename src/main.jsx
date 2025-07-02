@@ -6,7 +6,7 @@ import Loginpage from './pages/Loginpage'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    {/* <App /> */}
-    <Loginpage/>
+    <App />
+
   </StrictMode>,
 )

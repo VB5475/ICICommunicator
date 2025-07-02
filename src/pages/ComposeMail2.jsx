@@ -11,6 +11,7 @@ const ComposeMail2 = ({ open, onClose }) => {
     const [content, setContent] = useState("");
     const [showCc, setShowCc] = useState(false);
     const [showBcc, setShowBcc] = useState(false);
+    const [showToolbar, setShowToolbar] = useState(typeof window !== 'undefined' ? window.innerWidth >= 768 : true);
 
     useEffect(() => {
         if (!open) {
@@ -24,10 +25,20 @@ const ComposeMail2 = ({ open, onClose }) => {
         }
     }, [open]);
 
+    useEffect(() => {
+        function handleResize() {
+            setShowToolbar(window.innerWidth >= 768);
+        }
+        window.addEventListener('resize', handleResize);
+        // Set initial value
+        handleResize();
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     if (!open) return null;
 
     return (
-        <div className="fixed top-0 right-0 h-full w-[420px] bg-white shadow-2xl border-l border-gray-200 z-50 flex flex-col pl-5 lg:pl-4 lg:pr-4">
+        <div className="fixed top-0 right-0 h-full w-[420px] md:w-full lg:w-full bg-white shadow-2xl border-l border-gray-200 z-50 flex flex-col pl-5 md:px-0 lg:px-0 ">
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100 bg-gray-50">
                 <span className="font-medium text-gray-800 text-base">New Message</span>
@@ -83,16 +94,18 @@ const ComposeMail2 = ({ open, onClose }) => {
                 </div>
             </div>
             {/* Toolbar */}
-            <div className="px-5 py-2 border-t border-b border-gray-100 bg-gray-50 flex items-center space-x-2 text-gray-600 text-sm">
-                <button className="hover:bg-gray-200 p-1 rounded" title="Formatting"><b>B</b></button>
-                <button className="hover:bg-gray-200 p-1 rounded" title="Italic"><i>I</i></button>
-                <button className="hover:bg-gray-200 p-1 rounded" title="Underline"><u>U</u></button>
-                <button className="hover:bg-gray-200 p-1 rounded" title="Attach">📎</button>
-                <button className="hover:bg-gray-200 p-1 rounded" title="Insert link">🔗</button>
-                <button className="hover:bg-gray-200 p-1 rounded" title="Insert emoji">😊</button>
-                <button className="hover:bg-gray-200 p-1 rounded" title="Insert image">🖼️</button>
-                <button className="hover:bg-gray-200 p-1 rounded" title="More">⋯</button>
-            </div>
+            {showToolbar && (
+                <div className="px-5 py-2 border-t border-b border-gray-100 bg-gray-50 flex items-center space-x-2 text-gray-600 text-sm">
+                    <button className="hover:bg-gray-200 p-1 rounded" title="Formatting"><b>B</b></button>
+                    <button className="hover:bg-gray-200 p-1 rounded" title="Italic"><i>I</i></button>
+                    <button className="hover:bg-gray-200 p-1 rounded" title="Underline"><u>U</u></button>
+                    <button className="hover:bg-gray-200 p-1 rounded" title="Attach">📎</button>
+                    <button className="hover:bg-gray-200 p-1 rounded" title="Insert link">🔗</button>
+                    <button className="hover:bg-gray-200 p-1 rounded" title="Insert emoji">😊</button>
+                    <button className="hover:bg-gray-200 p-1 rounded" title="Insert image">🖼️</button>
+                    <button className="hover:bg-gray-200 p-1 rounded" title="More">⋯</button>
+                </div>
+            )}
             {/* Content */}
             <div className="px-5 py-3 flex-1 overflow-y-auto">
                 <Textarea

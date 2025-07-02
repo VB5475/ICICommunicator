@@ -4,7 +4,7 @@ import ComposeMail2 from "./ComposeMail2";
 import FeatureList from "@/components/FeatureList";
 import EmailListPreview from "@/components/EmailListPreview";
 
-function Page1() {
+function Page1({ setShowHome }) {
     const [showCompose, setShowCompose] = useState(false);
 
     const user = {
@@ -16,8 +16,9 @@ function Page1() {
     };
 
     return (
-        <>
-            <MainLayout2 onCompose={() => setShowCompose(true)} user={user}>
+        <div className="relative w-full h-screen">
+            {/* Main Layout - stays in place */}
+            <MainLayout2 onCompose={() => setShowCompose(true)} user={user} setShowHome={setShowHome}>
                 {(selectedNav) =>
                     selectedNav === "home" ? <FeatureList /> :
                         selectedNav === "inbox" ? <EmailListPreview /> :
@@ -33,18 +34,24 @@ function Page1() {
                             </div>
                 }
             </MainLayout2>
+
+            {/* Overlay Sidebar Compose Mail */}
+            <div className={`fixed top-0 right-0 h-full w-96 bg-white shadow-2xl border-l border-gray-200 transform transition-transform duration-100 ease-in-out z-50 ${showCompose ? 'translate-x-0' : 'translate-x-full'
+                }`}>
+                <ComposeMail2
+                    open={showCompose}
+                    onClose={() => setShowCompose(false)}
+                />
+            </div>
+
+            {/* Optional: Semi-transparent overlay */}
             {showCompose && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-                    <div className="relative w-full h-full flex items-center justify-center p-4">
-                        <div className="w-full h-full md:h-auto md:w-auto flex items-center justify-center">
-                            <div className="w-full h-full max-w-full md:max-w-2xl lg:max-w-4xl bg-white rounded-lg shadow-2xl flex flex-col overflow-hidden">
-                                <ComposeMail2 open={showCompose} onClose={() => setShowCompose(false)} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div
+                    className="fixed inset-0 bg-black/20 bg-opacity-10 z-40"
+                    onClick={() => setShowCompose(false)}
+                />
             )}
-        </>
+        </div>
     );
 }
 

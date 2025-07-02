@@ -65,13 +65,13 @@ const allSections = [
     },
 ];
 
-const gridSections = allSections.filter(s => s.title !== "Quick Navigation" && s.title !== "External Messages");
+const gridSections = allSections.filter(s => s.title !== "Quick Navigation");
 const quickNavSection = allSections.find(s => s.title === "Quick Navigation");
-const externalMessagesSection = allSections.find(s => s.title === "External Messages");
+// const externalMessagesSection = allSections.find(s => s.title === "External Messages");
 
 const FeatureList = () => (
     <div className="w-full max-w-5xl mx-auto px-2 lg:px-0 flex flex-col min-h-screen md:min-h-0 md:h-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 flex-1">
+        <div className="grid md:grid-cols-2 gap-6 ">
             {gridSections.map((section) => (
                 <div key={section.title} className="bg-white rounded-2xl shadow p-6 border border-gray-100 flex flex-col">
                     <div className="text-xs font-bold text-gray-500 mb-3 uppercase tracking-wide">
@@ -94,7 +94,7 @@ const FeatureList = () => (
                 </div>
             ))}
         </div>
-        {externalMessagesSection && (
+        {/* {externalMessagesSection && (
             <div className="mt-4 md:mt-6 lg:mt-8">
                 <div className="bg-white rounded-2xl shadow p-6 border border-gray-100">
                     <div className="text-xs font-bold text-gray-500 mb-3 uppercase tracking-wide">
@@ -115,18 +115,18 @@ const FeatureList = () => (
                     </div>
                 </div>
             </div>
-        )}
+        )} */}
         {quickNavSection && (
             <div className="mt-4 md:mt-6 lg:mt-8 mb-0 flex-shrink-0">
                 <div className="bg-white rounded-2xl shadow p-6 border border-gray-100">
                     <div className="text-xs font-bold text-gray-500 mb-3 uppercase tracking-wide">
                         {quickNavSection.title}
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                    <div className="grid md:grid-cols-2 gap-2">
                         {quickNavSection.items.map((item) => (
                             <div
                                 key={item.label}
-                                className="flex items-center justify-between bg-gray-50 hover:bg-blue-50 transition rounded-lg px-4 py-2 cursor-pointer shadow-sm border border-gray-100"
+                                className="flex items-center justify-between  bg-gray-50 hover:bg-blue-50 transition rounded-lg px-4 py-2 cursor-pointer shadow-sm border border-gray-100"
                             >
                                 <div className="flex items-center">
                                     {item.icon}
