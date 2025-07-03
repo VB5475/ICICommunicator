@@ -67,13 +67,13 @@ const Loginpage = ({ setShowHome }) => {
                                     <Label htmlFor="userId" className="flex justify-start items-center gap-2 mb-2 text-md md:text-lg">
                                         <User size={20} className='text-blue-500' /> User ID
                                     </Label>
-                                    <Input id="userId" placeholder="Enter your ID" value={data.id} onChange={(e) => setData({ ...data, id: e.target.value })} />
+                                    <Input id="userId" className='text-base' placeholder="Enter your ID" value={data.id} onChange={(e) => setData({ ...data, id: e.target.value })} />
                                 </div>
                                 <div className="w-full">
                                     <Label htmlFor="password" className="flex justify-start items-center gap-2 mb-2 text-md md:text-lg">
                                         <span> 🔒</span> Password
                                     </Label>
-                                    <Input type={showPassword ? "text" : "password"} id="password" placeholder="Enter your password" value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
+                                    <Input type={showPassword ? "text" : "password"} id="password" className='text-base' placeholder="Enter your password" value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
                                     <div className='mt-4 w-full flex justify-start items-center'>
                                         <Checkbox className='border-2 border-black'
                                             id="show-password"

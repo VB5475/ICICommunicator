@@ -48,8 +48,8 @@ const EmailListPreview = () => {
         <div className="w-full h-full flex flex-col px-4 md:px-0 py-4 md:py-0">
             {/* Header */}
             <div className="pb-3 border-b border-gray-100 flex items-center justify-between">
-                <span className="font-semibold text-gray-800 text-base">Primary</span>
-                <span className="text-xs text-gray-500">{emails.length} emails</span>
+                <span className="font-semibold text-gray-800 text-[16px] md:text-[20px]">Primary</span>
+                <span className="text-[14px] md:text-[18px] text-gray-500">{emails.length} emails</span>
             </div>
             {/* Email List */}
             <ul className="flex-1 divide-y divide-gray-100 mt-2 overflow-y-auto">
@@ -58,12 +58,12 @@ const EmailListPreview = () => {
                         key={mail.id}
                         className={`py-3 flex items-start space-x-3 cursor-pointer hover:bg-blue-50 transition-colors ${mail.unread ? "bg-blue-50/50" : ""}`}
                     >
-                        <div className="flex-shrink-0 w-9 h-9 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white font-bold text-lg">
+                        <div className="flex-shrink-0 w-14 h-14 rounded-full bg-gradient-to-br from-pink-400 to-purple-500 flex items-center justify-center text-white font-bold text-xl md:text-2xl">
                             {mail.sender[0]}
                         </div>
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between">
-                                <span className={`font-medium text-sm truncate ${mail.unread ? "text-blue-800" : "text-gray-800"}`}>{mail.sender}</span>
+                                <span className={`font-medium text-md truncate ${mail.unread ? "text-blue-800" : "text-gray-800"}`}>{mail.sender}</span>
                                 <span className="text-xs text-gray-400 ml-2 whitespace-nowrap">{mail.time}</span>
                             </div>
                             <div className={`truncate text-sm ${mail.unread ? "font-semibold" : "text-gray-600"}`}>{mail.subject}</div>
