@@ -139,7 +139,7 @@ const FeatureList = () => (
                 </div>
             </div>
         )}
-        <div className="mt-4 md:mt-6 lg:mt-8">
+        <div className="mt-4 pb-5 md:mt-6 lg:mt-8 ">
             <div className="bg-white rounded-2xl shadow p-4 md:p-5 lg:p-6 border border-gray-100">
                 <div className="text-xs font-bold text-gray-500 mb-2 md:mb-3 uppercase tracking-wide">
                     Today's Events
