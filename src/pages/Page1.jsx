@@ -18,7 +18,7 @@ function Page1({ setShowHome }) {
     if (showCompose) {
     return (
             <ComposeMail2
-                open={showCompose} // This will be true when rendered here
+                open={showCompose} 
                 onClose={() => setShowCompose(false)}
             />
     );

@@ -12,7 +12,7 @@ const TypedText = () => {
   const text = useTypingEffect(strings, 200, 1500);
 
   return (
-    <div className="h-12 w-full text-xl font-mono text-black bg-white p-4 flex justify-center items-center ">
+    <div className="h-12 w-full text-xl md:text-2xl font-mono text-black bg-white p-4 flex justify-center items-center ">
       {text}
       <span className="animate-pulse text-gray-600">|</span>
     </div>

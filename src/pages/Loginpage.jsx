@@ -29,17 +29,7 @@ const Loginpage = ({ setShowHome }) => {
             localStorage.setItem("loginData", JSON.stringify(data))
             setShowHome(true)
         }
-
-
-
-        // setData({
-        //     id: '',
-        //     password: ''
-        // })
     }
-
-
-
 
     return (
         <>
@@ -47,12 +37,12 @@ const Loginpage = ({ setShowHome }) => {
 
                 <div className='sm:h-[50%] md:h-full sm:w-1/5 md:w-3/5 lg:w-3/5  '>
                     {/* Logo  */}
-                    <div className='w-full h-[10%] flex ml-5 justify-start items-center mb-18 md:mb-[-70px] lg:mb-[-40px]'>
+                    <div className='w-full h-[10%] flex ml-5 justify-start items-center mb-2 md:mb-[-70px] lg:mb-[-40px]'>
                         <img src={Logo} alt="logo" className='h-20 w-15' />
                         <span className='text-4xl text-blue-500 font-bold'>Communicator</span>
                     </div>
                     {/* writeing section */}
-                    <div className='flex flex-col h-[90%] w-full justify-center items-center mb-15 md:mb-0 lg:mb-0 '>
+                    <div className='flex flex-col h-[90%] w-full justify-center items-center mb-10 md:mb-0  '>
                         <div>
                             <img src={Logo} alt="logo" className='h-25 w-20 ' />
                         </div>
@@ -68,34 +58,34 @@ const Loginpage = ({ setShowHome }) => {
                 <div className='sm:h-[70%] sm-w-[100%] md:h-full  sm:w-4/5 md:w-2/5 lg:w-2/5 flex justify-center items-center sm:mt-50 md:mt-0 '>
                     {/* Login Card */}
                     <form action="#" onSubmit={SaveData}>
-                        <Card className=" w-70 backdrop-blur-sm bg-slate-100 border-2 border-white shadow-lg shadow-gray-400 rounded-md ml-8 md:ml-1">
+                        <Card className=" w-90 md:w-70 lg:w-70 py-0 md:py-[15px] h-100  md:h-100 flex justify-center backdrop-blur-sm bg-slate-100 border-2 border-white shadow-lg shadow-gray-400 rounded-md ml-4 md:ml-[-8px] lg:pr-0">
                             <CardHeader>
-                                <CardTitle className='text-blue-500'>Login Form </CardTitle>
+                                <CardTitle className='text-blue-500 text-lg md:text-xl'>Login Form </CardTitle>
                             </CardHeader>
                             <CardContent className='flex flex-col justify-center items-center gap-6'>
                                 <div className="w-full">
-                                    <Label htmlFor="userId" className="flex justify-start items-center gap-2 mb-2">
+                                    <Label htmlFor="userId" className="flex justify-start items-center gap-2 mb-2 text-md md:text-lg">
                                         <User size={20} className='text-blue-500' /> User ID
                                     </Label>
-                                    <Input id="userId" placeholder="Enter your ID" value={data.id} onChange={(e) => setData({ ...data, id: e.target.value })} />
+                                    <Input id="userId" className='text-base' placeholder="Enter your ID" value={data.id} onChange={(e) => setData({ ...data, id: e.target.value })} />
                                 </div>
                                 <div className="w-full">
-                                    <Label htmlFor="password" className="flex justify-start items-center gap-2 mb-2">
+                                    <Label htmlFor="password" className="flex justify-start items-center gap-2 mb-2 text-md md:text-lg">
                                         <span> 🔒</span> Password
                                     </Label>
-                                    <Input type={showPassword ? "text" : "password"} id="password" placeholder="Enter your password" value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
+                                    <Input type={showPassword ? "text" : "password"} id="password" className='text-base' placeholder="Enter your password" value={data.password} onChange={(e) => setData({ ...data, password: e.target.value })} />
                                     <div className='mt-4 w-full flex justify-start items-center'>
                                         <Checkbox className='border-2 border-black'
                                             id="show-password"
                                             checked={showPassword}
                                             onCheckedChange={() => setShowPassword(!showPassword)}
                                         />
-                                        <Label htmlFor="" className='ml-3'>Show Password</Label>
+                                        <Label htmlFor="" className='ml-3 text-md'>Show Password</Label>
                                     </div>
                                 </div>
 
                                 <div className='w-full flex gap-4'>
-                                    <Button className="w-full bg-blue-600 hover:bg-blue-700" type="submit">
+                                    <Button className="w-full bg-blue-600 hover:bg-blue-70 text-lg " type="submit">
                                         Log In
                                     </Button>
 
