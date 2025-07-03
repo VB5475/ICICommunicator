@@ -52,7 +52,7 @@ const ComposeMail2 = ({ open, onClose }) => { // Changed prop to 'open' and adde
             <div className="px-5 pt-4 pb-2 space-y-2">
                 {/* To */}
                 <div className="flex items-center">
-                    <span className="w-14 text-[16px] md:text-[18px] text-gray-500">To</span>
+                    <span className="w-14 font-bold text-[14px] md:text-[18px] text-gray-500">To</span>
                     <Input
                         value={to}
                         onChange={e => setTo(e.target.value)}
@@ -65,7 +65,7 @@ const ComposeMail2 = ({ open, onClose }) => { // Changed prop to 'open' and adde
                 {/* Cc */}
                 {showCc && (
                     <div className="flex items-center">
-                        <span className="w-14 text-[16px] md:text-[18px] text-gray-500">Cc</span>
+                        <span className="w-14 font-bold  text-[14px] md:text-[18px] text-gray-500">Cc</span>
                         <Input
                             value={cc}
                             onChange={e => setCc(e.target.value)}
@@ -77,7 +77,7 @@ const ComposeMail2 = ({ open, onClose }) => { // Changed prop to 'open' and adde
                 {/* Bcc */}
                 {showBcc && (
                     <div className="flex items-center">
-                        <span className="w-14 text-[16px] md:text-[18px] text-gray-500">Bcc</span>
+                        <span className="w-14 font-bold  text-[14px] md:text-[18px] text-gray-500">Bcc</span>
                         <Input
                             value={bcc}
                             onChange={e => setBcc(e.target.value)}
@@ -88,7 +88,7 @@ const ComposeMail2 = ({ open, onClose }) => { // Changed prop to 'open' and adde
                 )}
                 {/* Subject */}
                 <div className="flex items-center">
-                    <span className="w-14 text-[16px] md:text-[18px] text-gray-500">Subject</span>
+                    <span className="w-14  font-bold  text-[14px] md:text-[18px] text-gray-500">Subject</span>
                     <Input
                         value={subject}
                         onChange={e => setSubject(e.target.value)}

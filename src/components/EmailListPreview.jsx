@@ -48,8 +48,8 @@ const EmailListPreview = () => {
         <div className="w-full h-full flex flex-col px-4 md:px-0 py-4 md:py-0">
             {/* Header */}
             <div className="pb-3 border-b border-gray-100 flex items-center justify-between">
-                <span className="font-semibold text-gray-800 text-[16px] md:text-[20px]">Primary</span>
-                <span className="text-[14px] md:text-[18px] text-gray-500">{emails.length} emails</span>
+                <span className="font-semibold text-gray-800 text-[18px] md:text-[22px]">Primary</span>
+                <span className="text-[16px] md:text-[18px] text-gray-500">{emails.length} emails</span>
             </div>
             {/* Email List */}
             <ul className="flex-1 divide-y divide-gray-100 mt-2 overflow-y-auto">
