@@ -45,7 +45,7 @@ const emails = [
 
 const EmailListPreview = () => {
     return (
-        <div className="w-full h-full flex flex-col px-0">
+        <div className="w-full h-full flex flex-col px-4 md:px-0 py-4 md:py-0">
             {/* Header */}
             <div className="pb-3 border-b border-gray-100 flex items-center justify-between">
                 <span className="font-semibold text-gray-800 text-base">Primary</span>
