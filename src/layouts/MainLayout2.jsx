@@ -171,7 +171,11 @@ const MainLayout2 = ({ onCompose, children, user = { name: "User_name", role: "U
                                     ? "bg-blue-50 text-blue-700 font-bold"
                                     : "text-gray-700 hover:bg-gray-100"
                                     }`}
-                                onClick={() => setSelectedNav(item.key)}
+                                onClick={() => 
+                                {
+                                    setSelectedNav(item.key);
+                                    setSidebarOpen(false);
+                                }}
                             >
                                 <span className="mr-3 text-lg">{item.icon}</span>
                                 {item.label}
