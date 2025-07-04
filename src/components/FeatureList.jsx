@@ -70,6 +70,10 @@ const quickNavSection = allSections.find(s => s.title === "Quick Navigation");
 // const externalMessagesSection = allSections.find(s => s.title === "External Messages");
 
 const FeatureList = () => (
+    <>
+    <div className="w-full flex items-center justify-between px-5 py-3 border-b border-gray-100 bg-gray-50  mb-5 mt[-5px]">
+        <span className="font-medium text-gray-800 text-[18px] md:text-[22px]">Home</span>
+    </div>
     <div className="w-full max-w-5xl mx-auto px-2 lg:px-0 flex flex-col min-h-screen md:min-h-0 md:h-full">
         <div className="grid md:grid-cols-2 gap-6 ">
             {gridSections.map((section) => (
@@ -150,6 +154,7 @@ const FeatureList = () => (
             </div>
         </div>
     </div>
+    </>
 );
 
 export default FeatureList; 

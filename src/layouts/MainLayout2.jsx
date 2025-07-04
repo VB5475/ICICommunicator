@@ -296,7 +296,7 @@ const MainLayout2 = ({ onCompose, children, user = { name: "User_name", role: "U
             </aside>
 
             {/* Main content area */}
-            <main className="flex-1 h-screen overflow-y-auto p-0 md:p-6">
+            <main className="flex-1 h-screen overflow-y-auto p-0">
                 {typeof children === 'function' ? children(selectedNav) : children}
             </main>
         </div>
